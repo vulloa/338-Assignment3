@@ -30,6 +30,16 @@ public class Assignment3
       System.out.println(card2.toString());
       System.out.println(card3.toString());
       System.out.println(card4.toString());
+      
+      Hand newHand = new Hand();
+      System.out.println("Hand Class Test:");
+      System.out.println(newHand.toString());
+      newHand.takeCard(card1);
+      System.out.println(newHand.toString());
+      newHand.takeCard(card2);
+      System.out.println(newHand.toString());
+      newHand.takeCard(card3);
+      System.out.println(newHand.toString());
 
    }
 

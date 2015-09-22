@@ -12,11 +12,9 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
-public class Assignment3 
-{
+public class Assignment3 {
 
-   public static void main(String[] args) 
-   {
+   public static void main(String[] args)  {
       // main function
       
       //   testing Card class

@@ -6,8 +6,7 @@ import java.util.Random;
  * 
  */
 
-public class Hand 
-{
+public class Hand {
 	//	constants
 	public final int MAX_CARDS = 50;
 	
@@ -16,8 +15,7 @@ public class Hand
 	private int numCards = 3;
 	
 	//	Constructor
-	Hand()
-	{
+	Hand(){
 		// create a Hand of MAX_CARDS
 		myCards = new Card[MAX_CARDS];
 		
@@ -30,18 +28,15 @@ public class Hand
 	
 	//	methods
 	
-	public void resetHand()
-	{
+	public void resetHand(){
 		
 	}
 	
-	public boolean takeCard(Card card)
-	{
+	public boolean takeCard(Card card){
 		//	adds a Card to the Hand
 		
 		//	make sure that numCards does not exceed MAX_CARDS
-		if(numCards <= MAX_CARDS)
-		{
+		if(numCards <= MAX_CARDS){
 			myCards[numCards++] = card;
 			return true;
 		}
@@ -64,8 +59,7 @@ public class Hand
 	}
 */		
 
-	public String toString()
-	{
+	public String toString(){
 		//	display hand
 		String myHand = "My Hand:\n\t" + Arrays.toString(myCards);
 		return myHand;

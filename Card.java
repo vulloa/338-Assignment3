@@ -17,21 +17,18 @@ public class Card
 	private boolean errorFlag;
 	
 	//	constructors
-	Card(char value, Suit suit)
-	{
+	Card(char value, Suit suit){
 		//	set user values
 		this.set(value,suit);		
 	}
 	
-	Card()
-	{
+	Card(){
 		//	default value if no values are entered
 		set('A', Suit.spades);
 	}	
 	
 	//	methods
-	 public String toString()
-	{
+	 public String toString(){
 		 String card = "";
 		 
 		if(getErrorFlag() == false)
@@ -43,14 +40,12 @@ public class Card
 		
 	}
 	 
-	 public boolean set(char value, Suit suit)
-	 {
+	 public boolean set(char value, Suit suit) {
 		 //	sets the suit and value of the 'card'
 		 //	take value and make upper case for comparison against array
 		 char uValue = Character.toUpperCase(value);
 		 
-		 if(isValid(uValue) == true)
-		 {
+		 if(isValid(uValue) == true){
 			 errorFlag = false;
 			 this.value = uValue;
 			 this.suit = suit;
@@ -62,18 +57,15 @@ public class Card
 	 
 	 }
 	 
-	 public Suit getSuit()
-	 {
+	 public Suit getSuit(){
 		 return suit;
 	 }
 	 
-	 public char getValue()
-	 {
+	 public char getValue(){
 		 return value;
 	 }
 	 
-	 public boolean getErrorFlag()
-	 {
+	 public boolean getErrorFlag(){
 		 return errorFlag;
 	 }
 	 
@@ -82,15 +74,12 @@ public class Card
 		 
 //	 }
 	
-	 private boolean isValid(char value1)
-	 {
+	 private boolean isValid(char value1){
 		 //	checks for valid entries to set to the Card
 		 char uValue = Character.toUpperCase(value1);
 		 
-		 for(char x : cardValues)
-		 {
-			 if(uValue == x)
-			 {
+		 for(char x : cardValues){
+			 if(uValue == x) {
 				 return true;
 			 }
 		 }
@@ -98,5 +87,10 @@ public class Card
 		 return false;
 		 
 	 }//	end isValid()
+
+	 @Override
+	 public Card clone() {
+	 	return new Card(this.value, this.suit);
+	 }
 	 
 }

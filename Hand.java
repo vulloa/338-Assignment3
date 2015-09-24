@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.Random;
-
 /*
  * Hand class to create a Hand object that consists of Card objects
  * 
@@ -8,21 +5,19 @@ import java.util.Random;
 
 public class Hand {
 	//	constants
-	public final int MAX_CARDS = 50;
+	public static final int MAX_CARDS = 52;
 	
 	//	private variables
 	private Card[] myCards;
-	private int numCards = 3;
+	public int numCards;
 	
 	//	Constructor
 	Hand(){
 		// create a Hand of MAX_CARDS
 		myCards = new Card[MAX_CARDS];
 		
-		//	only fill the first x amount of spots
-		myCards[0] = new Card('2',Card.Suit.hearts);
-		myCards[1] = new Card('3',Card.Suit.hearts);
-		myCards[2] = new Card('4',Card.Suit.hearts);
+		//	reset hand by default
+		resetHand();
 		
 	}
 	
@@ -30,49 +25,82 @@ public class Hand {
 	
 	public void resetHand(){
 		
+		// loop through up to MAX CARDS and null every value
+		for(int x = 0 ; x < MAX_CARDS ; x++)
+		{
+			myCards[x] = null;
+		}
+		
+		//reset numCards value
+		numCards = 0;
+		
 	}
 	
 	public boolean takeCard(Card card){
 		//	adds a Card to the Hand
 		
 		//	make sure that numCards does not exceed MAX_CARDS
-		if(numCards <= MAX_CARDS){
-			myCards[numCards++] = card;
+		if(numCards < MAX_CARDS){
+			myCards[numCards] = card;
+			numCards++;
 			return true;
 		}
 		
 		return false;
 	}
-/*
+
 	public Card playCard()
 	{
-		//	removes a Card from the Hand
+		//	to "play" a card it is removed from the hand
+		Card playingCard = myCards[numCards - 1];
+		myCards[numCards - 1] = null;
+		numCards--;
+		return playingCard;
 		
-		//	check to make sure the Hand is not 0
-				
-		if(numCards > 0)
-		{
-			
-			myCards[numCards] = null;
-			numCards--;
-		}
 	}
-*/		
 
 	public String toString(){
 		//	display hand
-		String myHand = "My Hand:\n\t" + Arrays.toString(myCards);
+		//	if hand is empty, then show empty  space, otherwise show hand
+		
+		if(numCards == 0)
+		{
+			return "My Hand:\n\t[     ]";
+		}
+		
+		String myHand = myCards[0].toString();
+		
+		for(int x = 1; x < numCards ; x++)
+		{
+			myHand += ", " + myCards[x].toString();
+		}
+		
+		myHand = new String("My Hand:\n\t" + myHand);
 		return myHand;
+		
 	}
-/*	
-	private int getNumCards()
+	
+	public int getNumCards()
 	{
 		return numCards;
 	}
 	
 	public Card inspectCard(int k)
 	{
-		//	accessor for individual card
+		//inspect cards to check for legal values
+		
+		if(k >= this.numCards || k < 0)
+		{
+			return new Card('Z',Card.Suit.spades);
+		}
+		else
+		{	
+			return new Card(this.myCards[k]);
+		}
+		
+
 	}
-	*/
-}
+	
+	
+}//	end class
+

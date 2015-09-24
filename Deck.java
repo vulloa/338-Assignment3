@@ -1,3 +1,5 @@
+
+
 import java.util.Collections;
 import java.util.Arrays;
 
@@ -23,13 +25,14 @@ public class Deck{
 
 	public void init(int numPacks){
 		int counter = 0;
-		for (Card card : cards) {
+		for (int i = 0; i < cards.length; ++i) {
 			if (counter >= 52)
 				counter = 0;
-			card = masterPack[counter];
+			cards[i] = masterPack[counter];
 			counter++;
-		topCard = 52*numPacks-1;
 		}
+		topCard = 52*numPacks-1;
+
 	}
 
 
@@ -41,16 +44,18 @@ public class Deck{
 
 	public Card dealCard() {
 		//returns and removes the card in the top occupied position of cards[].
-		Card card = cards[topCard];
+		System.out.print(cards[topCard].toString());
+
+		Card card = cards[topCard].clone();
 		cards[topCard] = null;
 		topCard--;
-		return card.clone();
+		return card;
 	}
 
 
 	public Card inspectCard(int k) {
 		// Accessor for an individual card.  Returns a card with errorFlag = true if k is bad.
-		if (cards[k] == null)
+		if (cards[k] == null || k < 0)
 			return new Card('M',Card.Suit.hearts);
 		return cards[k].clone();
 	}
@@ -59,13 +64,21 @@ public class Deck{
 
  
 	public static void allocateMasterPack() {
-		if (masterPack.length != 0)
+		if (!arrayEmpty(masterPack)) {
 			return;
+		}
 		int counter = -1;
 		for (Card.Suit s : Card.Suit.values())
-			for (char v : Card.cardValues) {
-				masterPack[counter++] = new Card(v,s);
+			for (char v : Card.cardValues){
+				masterPack[++counter] = new Card(v,s);
 			}
+	}
+
+	private static Boolean arrayEmpty(Card[] arry){
+		for (int i = 0; i < arry.length; i++)
+			if (arry[i] != null)
+				return false;
+		return true;
 	}
 
 

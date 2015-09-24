@@ -27,6 +27,20 @@ public class Card
 		set('A', Suit.spades);
 	}	
 	
+	
+	@Override
+	public Card clone()
+	{
+		return new Card(this.value,this.suit);
+	}
+	
+	
+	Card (Card Card)
+	{
+		//	copy from one card to another
+		this.set(Card.value, Card.suit);
+	}
+	
 	//	methods
 	 public String toString(){
 		 String card = "";
@@ -87,10 +101,6 @@ public class Card
 		 return false;
 		 
 	 }//	end isValid()
-
-	 @Override
-	 public Card clone() {
-	 	return new Card(this.value, this.suit);
-	 }
 	 
-}
+}//	end class
+
